@@ -15,6 +15,9 @@ echo 'Installing and configuring Docker engine'
 # install Docker engine
 yum -y install docker-engine
 
+# DMR
+yum install git
+
 # Format spare device as Btrfs
 # Configure Btrfs storage driver
 
