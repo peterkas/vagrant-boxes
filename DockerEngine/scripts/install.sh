@@ -41,9 +41,6 @@ echo ' '
 echo 'Created directory for the Autonomous Data Warehouse Credential Wallet'
 echo ' '
 
-# Copy and Unzio the credential wallet into /home/vagrant/adw_wallet
-cp /vagrant/wallet_DB*.zip /home/vagrant/adw_wallet
-unzip /vagrant/wallet_DB*.zip -d /home/vagrant/adw_wallet
 
 # Clone the docker-images project which includes a sub project for the OracleInstantClient
 
@@ -53,7 +50,24 @@ echo ' '
 echo 'git clone of the solutionsanz\docker-images including OracleInstantClient -ADW complete'
 echo ' '
 
+# Create directory for Autonomous Data Warehouse Credential / Wallet
+mkdir -p /home/vagrant/adw_wallet
+chown vagrant:vagrant /home/vagrant/adw_wallet
+
+echo ' '
+echo 'Created directory for the Autonomous Data Warehouse Credential Wallet'
+echo ' '
+
 chown -R vagrant:vagrant /home/vagrant/solutionsanz
+
+#Copy and Unzip the credential wallet for Autonomous Data Warehouse into the OracleInstantClient-ADW/dockerfiles/18.3.0 directory created using the previous git clone operation
+
+cp /vagrant/wallet_DB*.zip /home/vagrant/solutionsanz/OracleInstantClient-ADW/dockerfiles/18.3.0/adw_wallet
+unzip /vagrant/wallet_DB*.zip /home/vagrant/solutionsanz/OracleInstantClient-ADW/dockerfiles/18.3.0/adw_wallet
+
+#Copy the OracleInstantClient required rpm files
+cp /vagrant/*.rpm /home/vagrant/solutionsanz/OracleInstantClient-ADW/dockerfiles/18.3.0
+
 
 echo 'Docker engine is ready to use'
 echo 'To get started, on your host, run:'
