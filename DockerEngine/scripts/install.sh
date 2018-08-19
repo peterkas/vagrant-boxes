@@ -33,15 +33,6 @@ systemctl enable docker
 # Add vagrant user to docker group
 usermod -a -G docker vagrant
 
-# Create directory for Autonomous Data Warehouse Credential / Wallet
-#mkdir -p /home/vagrant/adw_wallet
-#chown vagrant:vagrant /home/vagrant/adw_wallet
-
-#echo ' '
-#echo 'Created directory for the Autonomous Data Warehouse Credential Wallet'
-#echo ' '
-
-
 # Clone the docker-images project which includes a sub project for the OracleInstantClient
 
 git clone https://github.com/solutionsanz/docker-images.git /home/vagrant/solutionsanz
