@@ -67,5 +67,5 @@ echo 'To get started, on your host, run:'
 echo '  vagrant ssh'
 echo 
 echo 'Then, within the guest (for example):'
-echo '  docker run -it oraclelinux:6-slim'
+echo '  docker run -it oraclelinux:7-slim'
 echo
