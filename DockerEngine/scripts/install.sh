@@ -36,17 +36,17 @@ usermod -a -G docker vagrant
 mkdir -p /home/vagrant/adw_wallet
 chown vagrant:vagrant /home/vagrant/adw_wallet
 
-echo ` `
-echo `Created directory for the Credential Wallet
-echo ` `
+echo ' '
+echo 'Created directory for the iAutonomous Data Warehouse Credential Wallet'
+echo ' '
 
 # Clone the docker-images project which includes a sub project for the OracleInstantClient
 
 git clone https://github.com/solutionsanz/docker-images.git /home/vagrant/solutionsanz
 
-echo ` `
-echo 'git clone of the solutionsanz\docker-images including OracleInstantClient complete`
-echo ` ` 
+echo ' '
+echo 'git clone of the solutionsanz\docker-images including OracleInstantClient -ADW complete'
+echo ' '
 
 chown -R vagrant:vagrant /home/vagrant/solutionsanz
 
