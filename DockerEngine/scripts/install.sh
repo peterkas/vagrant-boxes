@@ -41,8 +41,8 @@ echo 'Created directory for the Autonomous Data Warehouse Credential Wallet'
 echo ' '
 
 # Copy and Unzio the credential wallet into /home/vagrant/adw_wallet
-cp wallet_DB201807201207.zip /home/vagrant/adw_wallet
-unzip /vagrant/wallet_DB201807201207.zip /home/vagrant/adw_wallet
+cp /vagrant/wallet_DB*.zip /home/vagrant/adw_wallet
+unzip /vagrant/wallet_DB*.zip /home/vagrant/adw_wallet
 
 # Clone the docker-images project which includes a sub project for the OracleInstantClient
 
