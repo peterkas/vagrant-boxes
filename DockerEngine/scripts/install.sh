@@ -19,6 +19,7 @@ yum -y install docker-engine
 su -
 yum update
 yum -y install git
+yum install zip unzip -y
 
 # Format spare device as Btrfs
 # Configure Btrfs storage driver
@@ -42,7 +43,7 @@ echo ' '
 
 # Copy and Unzio the credential wallet into /home/vagrant/adw_wallet
 cp /vagrant/wallet_DB*.zip /home/vagrant/adw_wallet
-unzip /vagrant/wallet_DB*.zip /home/vagrant/adw_wallet
+unzip /vagrant/wallet_DB*.zip -d /home/vagrant/adw_wallet
 
 # Clone the docker-images project which includes a sub project for the OracleInstantClient
 
