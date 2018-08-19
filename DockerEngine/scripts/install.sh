@@ -16,7 +16,9 @@ echo 'Installing and configuring Docker engine'
 yum -y install docker-engine
 
 # DMR
-yum install git
+su -
+yum update
+yum -y install git
 
 # Format spare device as Btrfs
 # Configure Btrfs storage driver
@@ -29,6 +31,24 @@ systemctl enable docker
 
 # Add vagrant user to docker group
 usermod -a -G docker vagrant
+
+# Create directory for Autonomous Data Warehouse Credential / Wallet
+mkdir -p /home/vagrant/adw_wallet
+chown vagrant:vagrant /home/vagrant/adw_wallet
+
+echo ` `
+echo `Created directory for the Credential Wallet
+echo ` `
+
+# Clone the docker-images project which includes a sub project for the OracleInstantClient
+
+git clone https://github.com/solutionsanz/docker-images.git /home/vagrant/solutionsanz
+
+echo ` `
+echo 'git clone of the solutionsanz\docker-images including OracleInstantClient complete`
+echo ` ` 
+
+chown -R vagrant:vagrant /home/vagrant/solutionsanz
 
 echo 'Docker engine is ready to use'
 echo 'To get started, on your host, run:'
