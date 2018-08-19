@@ -65,7 +65,7 @@ cp /vagrant/wallet_DB*.zip /home/vagrant/solutionsanz/OracleInstantClient-ADW/do
 unzip /vagrant/wallet_DB*.zip -d /home/vagrant/solutionsanz/OracleInstantClient-ADW/dockerfiles/18.3.0/adw_wallet
 
 # Now stream edit the sqlnet.ora file to point to the location of the credential wallet 
-sed -i 's#?/network/admin#/home/adw_wallet#g' sqlnet.ora
+sed -i 's#?/network/admin#/home/adw_wallet#g' /home/vagrant/solutionsanz/OracleInstantClient-ADW/dockerfiles/18.3.0/adw_wallet/sqlnet.ora
 
 #Copy the OracleInstantClient required rpm files
 cp /vagrant/*.rpm /home/vagrant/solutionsanz/OracleInstantClient-ADW/dockerfiles/18.3.0
