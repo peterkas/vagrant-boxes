@@ -63,7 +63,7 @@ echo ' '
 
 mkdir -p /home/vagrant/adw_wallet
 unzip /vagrant/wallet*.zip -d /home/vagrant/adw_wallet
-cp /vagrant/myscript.py /home/vagrant/
+cp /vagrant/*.py /home/vagrant/
 
 chown -R vagrant:vagrant /home/vagrant/solutionsanz
 
