@@ -74,9 +74,11 @@ unzip /vagrant/wallet_DB*.zip -d /home/vagrant/solutionsanz/OracleInstantClient-
 
 # Now stream edit the sqlnet.ora file to point to the location of the credential wallet first for the VBox environment
 sed -i 's#?/network/admin#/home/vagrant/adw_wallet#g' /home/vagrant/adw_wallet/sqlnet.ora
+sed -i 's/SSL_SERVER/#SSL_SERVER/g' /home/vagrant/adw_wallet/sqlnet.ora
+
 # And now for the Docker environment
 sed -i 's#?/network/admin#/home/adw_wallet#g' /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0/adw_wallet/sqlnet.ora
-sed -i 's/SSL_SERVER_DN_MATCH/#SSL_SERVER_DN_MATCH/g' /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0/adw_wallet/sqlnet.ora
+sed -i 's/SSL_SERVER/#SSL_SERVER/g' /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0/adw_wallet/sqlnet.ora
 
 #Copy the OracleInstantClient required rpm files
 cp /vagrant/*.rpm /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0
@@ -87,7 +89,7 @@ echo export PATH=$PATH:/usr/lib/oracle/18.3/client64/bin >> /home/vagrant/.bash_
 echo export TNS_ADMIN=/home/vagrant/adw_wallet >> /home/vagrant/.bash_profile
 echo export LD_LIBRARY_PATH=/usr/lib/oracle/18.3/client64/lib/ >> /home/vagrant/.bash_profile
 
-sudo ln -s $LD_LIBRARY_PATH/libclntsh.so.18.1 $LD_LIBRARY_PATH/libclntsh.so
+sudo ln -s /usr/lib/oracle/18.3/client64/lib/libclntsh.so.18.1 /usr/lib/oracle/18.3/client64/lib/libclntsh.so
 
 echo 'Docker engine is ready to use'
 echo 'To get started, on your host, run:'
