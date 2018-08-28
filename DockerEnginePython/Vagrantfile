@@ -17,7 +17,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 # define hostname
-NAME = "ol7-docker-engine-python"
+NAME = "ol7-docker-python-flask"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ol7-latest"

@@ -61,7 +61,7 @@ echo ' '
 echo 'Created directory for the Autonomous Data Warehouse Credential Wallet'
 echo ' '
 
-mkdir -p /home/vaghrant/adw_wallet
+mkdir -p /home/vagrant/adw_wallet
 unzip /vagrant/wallet*.zip -d /home/vagrant/adw_wallet
 cp /vagrant/myscript.py /home/vagrant/
 
@@ -76,15 +76,14 @@ unzip /vagrant/wallet_DB*.zip -d /home/vagrant/solutionsanz/OracleInstantClient-
 sed -i 's#?/network/admin#/home/vagrant/adw_wallet#g' /home/vagrant/adw_wallet/sqlnet.ora
 # And now for the Docker environment
 sed -i 's#?/network/admin#/home/adw_wallet#g' /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0/adw_wallet/sqlnet.ora
- 
+sed -i 's/SSL_SERVER_DN_MATCH/#SSL_SERVER_DN_MATCH/g' /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0/adw_wallet/sqlnet.ora
 
 #Copy the OracleInstantClient required rpm files
 cp /vagrant/*.rpm /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0
 
 sudo chown -R vagrant:vagrant /home/vagrant
 
-echo export PATH=$PATH:/usr/lib/oracle/18.3/client64/bin/ >> /home/vagrant/.bash_profile
-echo export PATH=$PATH:/usr/lib/oracle/18.3/client64/lib >> /home/vagrant/.bash_profile
+echo export PATH=$PATH:/usr/lib/oracle/18.3/client64/bin >> /home/vagrant/.bash_profile
 echo export TNS_ADMIN=/home/vagrant/adw_wallet >> /home/vagrant/.bash_profile
 echo export LD_LIBRARY_PATH=/usr/lib/oracle/18.3/client64/lib/ >> /home/vagrant/.bash_profile
 
