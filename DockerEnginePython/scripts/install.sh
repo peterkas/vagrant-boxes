@@ -58,7 +58,7 @@ echo ' '
 mkdir -p  /home/vagrant/solutionsanz/OracleInstantClient-Python-ATP/dockerfiles/18.3.0/atp_wallet
 
 echo ' '
-echo 'Created directory for the Autonomous Data Warehouse Credential Wallet'
+echo 'Created directory for the Autonomous Database Credential Wallet'
 echo ' '
 
 mkdir -p /home/vagrant/atp_wallet
