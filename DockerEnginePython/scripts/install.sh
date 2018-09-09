@@ -51,42 +51,42 @@ usermod -a -G docker vagrant
 git clone https://github.com/solutionsanz/docker-images.git /home/vagrant/solutionsanz
 
 echo ' '
-echo 'git clone of the solutionsanz\docker-images including OracleInstantClient-Python-ADW complete'
+echo 'git clone of the solutionsanz\docker-images including OracleInstantClient-Python-ATP complete'
 echo ' '
 
-# Create directory for Autonomous Data Warehouse Credential / Wallet
-mkdir -p  /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0/adw_wallet
+# Create directory for Autonomous Transaction Processing (or Autonomous Data Warehouse) Credential / Wallet
+mkdir -p  /home/vagrant/solutionsanz/OracleInstantClient-Python-ATP/dockerfiles/18.3.0/atp_wallet
 
 echo ' '
 echo 'Created directory for the Autonomous Data Warehouse Credential Wallet'
 echo ' '
 
-mkdir -p /home/vagrant/adw_wallet
-unzip /vagrant/wallet*.zip -d /home/vagrant/adw_wallet
+mkdir -p /home/vagrant/atp_wallet
+unzip /vagrant/wallet*.zip -d /home/vagrant/atp_wallet
 cp /vagrant/*.py /home/vagrant/
 
 chown -R vagrant:vagrant /home/vagrant/solutionsanz
 
-#Copy and Unzip the credential wallet for Autonomous Data Warehouse into the OracleInstantClient-Python-ADW/dockerfiles/18.3.0 directory created using the previous git clone operation
+#Copy and Unzip the credential wallet for Autonomous Transaction Processing Database into the OracleInstantClient-Python-ATP/dockerfiles/18.3.0 directory created using the previous git clone operation
 
-cp /vagrant/wallet_DB*.zip /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0/adw_wallet
-unzip /vagrant/wallet_DB*.zip -d /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0/adw_wallet
+cp /vagrant/wallet_DB*.zip /home/vagrant/solutionsanz/OracleInstantClient-Python-ATP/dockerfiles/18.3.0/atp_wallet
+unzip /vagrant/wallet_DB*.zip -d /home/vagrant/solutionsanz/OracleInstantClient-Python-ATP/dockerfiles/18.3.0/atp_wallet
 
 # Now stream edit the sqlnet.ora file to point to the location of the credential wallet first for the VBox environment
-sed -i 's#?/network/admin#/home/vagrant/adw_wallet#g' /home/vagrant/adw_wallet/sqlnet.ora
-sed -i 's/SSL_SERVER/#SSL_SERVER/g' /home/vagrant/adw_wallet/sqlnet.ora
+sed -i 's#?/network/admin#/home/vagrant/atp_wallet#g' /home/vagrant/atp_wallet/sqlnet.ora
+sed -i 's/SSL_SERVER/#SSL_SERVER/g' /home/vagrant/atp_wallet/sqlnet.ora
 
 # And now for the Docker environment
-sed -i 's#?/network/admin#/home/adw_wallet#g' /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0/adw_wallet/sqlnet.ora
-sed -i 's/SSL_SERVER/#SSL_SERVER/g' /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0/adw_wallet/sqlnet.ora
+sed -i 's#?/network/admin#/home/atp_wallet#g' /home/vagrant/solutionsanz/OracleInstantClient-Python-ATP/dockerfiles/18.3.0/atp_wallet/sqlnet.ora
+sed -i 's/SSL_SERVER/#SSL_SERVER/g' /home/vagrant/solutionsanz/OracleInstantClient-Python-ATP/dockerfiles/18.3.0/atp_wallet/sqlnet.ora
 
 #Copy the OracleInstantClient required rpm files
-cp /vagrant/*.rpm /home/vagrant/solutionsanz/OracleInstantClient-Python-ADW/dockerfiles/18.3.0
+cp /vagrant/*.rpm /home/vagrant/solutionsanz/OracleInstantClient-Python-ATP/dockerfiles/18.3.0
 
 sudo chown -R vagrant:vagrant /home/vagrant
 
 echo export PATH=$PATH:/usr/lib/oracle/18.3/client64/bin >> /home/vagrant/.bash_profile
-echo export TNS_ADMIN=/home/vagrant/adw_wallet >> /home/vagrant/.bash_profile
+echo export TNS_ADMIN=/home/vagrant/atp_wallet >> /home/vagrant/.bash_profile
 echo export LD_LIBRARY_PATH=/usr/lib/oracle/18.3/client64/lib/ >> /home/vagrant/.bash_profile
 
 sudo ln -s /usr/lib/oracle/18.3/client64/lib/libclntsh.so.18.1 /usr/lib/oracle/18.3/client64/lib/libclntsh.so
